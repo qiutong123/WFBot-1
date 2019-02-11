@@ -24,7 +24,7 @@ namespace TRKS.WF.QQBot.MahuaEvents
         {
             _mahuaApi = mahuaApi;
         }
-
+        //ce
         public void ProcessGroupMessage(GroupMessageReceivedContext context)
         {
             lock (Locker)
