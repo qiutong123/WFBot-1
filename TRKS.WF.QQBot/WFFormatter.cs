@@ -6,7 +6,6 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using Humanizer;
 using Humanizer.Localisation;
-
 namespace TRKS.WF.QQBot
 {
     public static class WFFormatter
@@ -29,6 +28,18 @@ namespace TRKS.WF.QQBot
             return sb.ToString().Trim();
         }
 
+        public static string ToString(PersistentEnemie enemy)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine($"[{enemy.agentType}]");
+            if (enemy.isDiscovered)
+            {
+                sb.AppendLine($"- 出现在: {enemy.lastDiscoveredAt}");
+            }
+            sb.AppendLine($"- 剩余点数: {enemy.healthPercent:P}");
+            return sb.ToString().Trim();
+
+        }
         public static string ToString(WFAlert alert)
         {
             var mission = alert.Mission;
@@ -98,16 +109,28 @@ namespace TRKS.WF.QQBot
 
             return sb.ToString().Trim();
         }
-        public static string ToString(SyndicateMission mission)
+        public static string ToString(SyndicateMission mission, int index)
         {
             var sb = new StringBuilder();
             sb.AppendLine($"集团: {mission.syndicate}");
             sb.AppendLine();
             var count = 0;
+            if (index >= 1 && index <= 5)
+            {
+                mission.jobs = new[]{mission.jobs[index - 1]};
+            }
             foreach (var job in mission.jobs)
             {
                 count++;
-                sb.AppendLine($"> 赏金{count}等级: {job.enemyLevels[0]} - {job.enemyLevels[1]}");
+                if (index >= 1 && index <= 5)
+                {
+                    sb.AppendLine($"> 赏金{index}等级: {job.enemyLevels[0]} - {job.enemyLevels[1]}");
+                }
+                else
+                {
+                    sb.AppendLine($"> 赏金{count}等级: {job.enemyLevels[0]} - {job.enemyLevels[1]}");
+                }
+
                 sb.AppendLine("- 奖励:");
                 foreach (var reward in job.rewardPool)
                 {
@@ -116,8 +139,7 @@ namespace TRKS.WF.QQBot
 
                 sb.AppendLine();
             }
-
-
+            
             return sb.ToString().Trim();
         }
         public static string ToString(WFInvasion inv)

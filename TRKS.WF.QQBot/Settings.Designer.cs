@@ -65,6 +65,12 @@
             this.button5 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.checkBox12 = new System.Windows.Forms.CheckBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.checkBox13 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // textBox1
@@ -119,7 +125,7 @@
         "电磁力场装置"};
             this.checkBox1.Text = "电磁力场装置";
             this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.InvasionsCheck);
+            this.checkBox1.Click += new System.EventHandler(this.InvasionsCheck);
             // 
             // checkBox2
             // 
@@ -133,7 +139,7 @@
         "爆燃喷射器"};
             this.checkBox2.Text = "爆燃喷射器";
             this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.InvasionsCheck);
+            this.checkBox2.Click += new System.EventHandler(this.InvasionsCheck);
             // 
             // checkBox3
             // 
@@ -147,7 +153,7 @@
         "突变原聚合物"};
             this.checkBox3.Text = "突变原聚合物";
             this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.CheckedChanged += new System.EventHandler(this.InvasionsCheck);
+            this.checkBox3.Click += new System.EventHandler(this.InvasionsCheck);
             // 
             // checkBox4
             // 
@@ -188,7 +194,7 @@
         "希芙 散热器"};
             this.checkBox4.Text = "武器部件";
             this.checkBox4.UseVisualStyleBackColor = true;
-            this.checkBox4.CheckedChanged += new System.EventHandler(this.InvasionsCheck);
+            this.checkBox4.Click += new System.EventHandler(this.InvasionsCheck);
             // 
             // checkBox5
             // 
@@ -203,7 +209,7 @@
         "OROKIN反应堆 蓝图"};
             this.checkBox5.Text = "Orokin 催化剂/反应堆 蓝图";
             this.checkBox5.UseVisualStyleBackColor = true;
-            this.checkBox5.CheckedChanged += new System.EventHandler(this.InvasionsCheck);
+            this.checkBox5.Click += new System.EventHandler(this.InvasionsCheck);
             // 
             // checkBox6
             // 
@@ -217,7 +223,7 @@
         "异融ALAD V导航座标"};
             this.checkBox6.Text = "异融Alad V导航坐标";
             this.checkBox6.UseVisualStyleBackColor = true;
-            this.checkBox6.CheckedChanged += new System.EventHandler(this.InvasionsCheck);
+            this.checkBox6.Click += new System.EventHandler(this.InvasionsCheck);
             // 
             // checkBox7
             // 
@@ -231,7 +237,7 @@
         "FORMA 蓝图"};
             this.checkBox7.Text = "Forma 蓝图";
             this.checkBox7.UseVisualStyleBackColor = true;
-            this.checkBox7.CheckedChanged += new System.EventHandler(this.InvasionsCheck);
+            this.checkBox7.Click += new System.EventHandler(this.InvasionsCheck);
             // 
             // checkBox8
             // 
@@ -246,6 +252,7 @@
             this.checkBox8.Text = "特殊功能槽连接器 蓝图";
             this.checkBox8.UseVisualStyleBackColor = true;
             this.checkBox8.CheckedChanged += new System.EventHandler(this.InvasionsCheck);
+            this.checkBox8.Click += new System.EventHandler(this.InvasionsCheck);
             // 
             // label3
             // 
@@ -332,7 +339,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(13, 651);
+            this.textBox3.Location = new System.Drawing.Point(13, 684);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(262, 21);
             this.textBox3.TabIndex = 20;
@@ -341,9 +348,9 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button3.Location = new System.Drawing.Point(293, 651);
+            this.button3.Location = new System.Drawing.Point(293, 678);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 35);
+            this.button3.Size = new System.Drawing.Size(75, 29);
             this.button3.TabIndex = 21;
             this.button3.Text = "发送";
             this.button3.UseVisualStyleBackColor = true;
@@ -353,7 +360,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label7.Location = new System.Drawing.Point(9, 610);
+            this.label7.Location = new System.Drawing.Point(9, 643);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(261, 20);
             this.label7.TabIndex = 22;
@@ -362,7 +369,7 @@
             // textBox4
             // 
             this.textBox4.AcceptsReturn = true;
-            this.textBox4.Location = new System.Drawing.Point(13, 751);
+            this.textBox4.Location = new System.Drawing.Point(13, 784);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(262, 21);
             this.textBox4.TabIndex = 23;
@@ -371,7 +378,7 @@
             // textBox5
             // 
             this.textBox5.AllowDrop = true;
-            this.textBox5.Location = new System.Drawing.Point(13, 803);
+            this.textBox5.Location = new System.Drawing.Point(13, 836);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(262, 21);
             this.textBox5.TabIndex = 24;
@@ -381,7 +388,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label8.Location = new System.Drawing.Point(12, 723);
+            this.label8.Location = new System.Drawing.Point(12, 756);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(69, 21);
             this.label8.TabIndex = 25;
@@ -392,7 +399,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label9.Location = new System.Drawing.Point(12, 777);
+            this.label9.Location = new System.Drawing.Point(12, 810);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(101, 21);
             this.label9.TabIndex = 26;
@@ -402,7 +409,7 @@
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button4.Location = new System.Drawing.Point(281, 798);
+            this.button4.Location = new System.Drawing.Point(281, 831);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 30);
             this.button4.TabIndex = 27;
@@ -414,7 +421,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label10.Location = new System.Drawing.Point(8, 692);
+            this.label10.Location = new System.Drawing.Point(8, 725);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(394, 26);
             this.label10.TabIndex = 28;
@@ -424,7 +431,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label11.Location = new System.Drawing.Point(8, 831);
+            this.label11.Location = new System.Drawing.Point(8, 864);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(122, 21);
             this.label11.TabIndex = 29;
@@ -434,7 +441,7 @@
             // checkBox11
             // 
             this.checkBox11.AutoSize = true;
-            this.checkBox11.Location = new System.Drawing.Point(18, 865);
+            this.checkBox11.Location = new System.Drawing.Point(18, 898);
             this.checkBox11.Name = "checkBox11";
             this.checkBox11.Size = new System.Drawing.Size(102, 16);
             this.checkBox11.TabIndex = 30;
@@ -482,12 +489,88 @@
             this.checkBox12.UseVisualStyleBackColor = true;
             this.checkBox12.CheckedChanged += new System.EventHandler(this.checkBox12_CheckedChanged);
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label13.Location = new System.Drawing.Point(32, 581);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(49, 19);
+            this.label13.TabIndex = 39;
+            this.label13.Text = "平台";
+            this.label13.Click += new System.EventHandler(this.label13_Click);
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(117, 585);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(35, 16);
+            this.radioButton1.TabIndex = 40;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "pc";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.Click += new System.EventHandler(this.UpdatePlatform);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(192, 584);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(47, 16);
+            this.radioButton2.TabIndex = 41;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "xbox";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.Click += new System.EventHandler(this.UpdatePlatform);
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(117, 612);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(41, 16);
+            this.radioButton3.TabIndex = 42;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "ps4";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.Click += new System.EventHandler(this.UpdatePlatform);
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(192, 612);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(59, 16);
+            this.radioButton4.TabIndex = 43;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "switch";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton4.Click += new System.EventHandler(this.UpdatePlatform);
+            // 
+            // checkBox13
+            // 
+            this.checkBox13.AutoSize = true;
+            this.checkBox13.Location = new System.Drawing.Point(366, 515);
+            this.checkBox13.Name = "checkBox13";
+            this.checkBox13.Size = new System.Drawing.Size(84, 16);
+            this.checkBox13.TabIndex = 44;
+            this.checkBox13.Text = "使用中转WM";
+            this.checkBox13.UseVisualStyleBackColor = true;
+            this.checkBox13.Click += new System.EventHandler(checkBox13_Click);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(437, 385);
+            this.ClientSize = new System.Drawing.Size(488, 385);
+            this.Controls.Add(this.checkBox13);
+            this.Controls.Add(this.radioButton4);
+            this.Controls.Add(this.radioButton3);
+            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.label13);
             this.Controls.Add(this.checkBox12);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.button5);
@@ -525,7 +608,7 @@
             this.Controls.Add(this.textBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Settings";
-            this.Text = " ";
+            this.Text = " 机器人设置";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -570,6 +653,12 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.CheckBox checkBox12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.CheckBox checkBox13;
     }
 }
 

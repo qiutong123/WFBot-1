@@ -55,16 +55,18 @@ namespace TRKS.WF.QQBot
     }
     public static class WFResource
     {
-        public static WFTranslator WFTranslator = new WFTranslator();
-        public static WFChineseAPI WFChineseApi = new WFChineseAPI();
+        public static WFTranslator WFTranslator { get; } = new WFTranslator();
+        public static WFChineseAPI WFChineseApi { get; } = new WFChineseAPI();
     }
+
     public class WFChineseAPI
     {
         private WFTranslator translator = WFResource.WFTranslator;
+        private string platform => Config.Instance.Platform.GetSymbols().First();
 
         public List<WFInvasion> GetInvasions()
         {
-            var invasions = WebHelper.DownloadJson<List<WFInvasion>>("https://api.warframestat.us/pc/invasions");
+            var invasions = WebHelper.DownloadJson<List<WFInvasion>>($"https://api.warframestat.us/{platform}/invasions");
             foreach (var invasion in invasions)
             {
                 translator.TranslateInvasion(invasion);
@@ -78,7 +80,7 @@ namespace TRKS.WF.QQBot
         {
             try
             {
-                var alerts = WebHelper.DownloadJson<List<WFAlert>>("https://api.warframestat.us/pc/alerts");
+                var alerts = WebHelper.DownloadJson<List<WFAlert>>($"https://api.warframestat.us/{platform}/alerts");
                 foreach (var alert in alerts)
                 {
                     translator.TranslateAlert(alert);
@@ -105,16 +107,17 @@ namespace TRKS.WF.QQBot
             return new List<WFAlert>();
         }
 
+
         public CetusCycle GetCetusCycle()
         {
-            var cycle = WebHelper.DownloadJson<CetusCycle>("https://api.warframestat.us/pc/cetusCycle");
+            var cycle = WebHelper.DownloadJson<CetusCycle>($"https://api.warframestat.us/{platform}/cetusCycle");
             cycle.Expiry = GetRealTime(cycle.Expiry);
             return cycle;
         }
 
         public VallisCycle GetVallisCycle()
         {
-            var cycle = WebHelper.DownloadJson<VallisCycle>("https://api.warframestat.us/pc/vallisCycle");
+            var cycle = WebHelper.DownloadJson<VallisCycle>($"https://api.warframestat.us/{platform}/vallisCycle");
             cycle.expiry = GetRealTime(cycle.expiry);
             return cycle;
         }
@@ -122,20 +125,20 @@ namespace TRKS.WF.QQBot
 
         public Sortie GetSortie()
         {
-            var sortie = WebHelper.DownloadJson<Sortie>("https://api.warframestat.us/pc/sortie");
+            var sortie = WebHelper.DownloadJson<Sortie>($"https://api.warframestat.us/{platform}/sortie");
             translator.TranslateSortie(sortie);
             return sortie;
         }
 
         public List<SyndicateMission> GetSyndicateMissions()
         {
-            var missions = WebHelper.DownloadJson<List<SyndicateMission>>("https://api.warframestat.us/pc/syndicateMissions");
+            var missions = WebHelper.DownloadJson<List<SyndicateMission>>($"https://api.warframestat.us/{platform}/syndicateMissions");
             translator.TranslateSyndicateMission(missions);
             return missions;
         }
         public VoidTrader GetVoidTrader()
         {
-            var trader = WebHelper.DownloadJson<VoidTrader>("https://api.warframestat.us/pc/voidTrader");
+            var trader = WebHelper.DownloadJson<VoidTrader>($"https://api.warframestat.us/{platform}/voidTrader");
             trader.activation = GetRealTime(trader.activation);
             trader.expiry = GetRealTime(trader.expiry);
             translator.TranslateVoidTrader(trader);
@@ -144,14 +147,14 @@ namespace TRKS.WF.QQBot
 
         public List<Fissure> GetFissures()
         {
-            var fissures = WebHelper.DownloadJson<List<Fissure>>("https://api.warframestat.us/pc/fissures");
+            var fissures = WebHelper.DownloadJson<List<Fissure>>($"https://api.warframestat.us/{platform}/fissures");
             translator.TranslateFissures(fissures);
             return fissures;
         }
 
         public List<Event> GetEvents()
         {
-            var events = WebHelper.DownloadJson<List<Event>>("https://api.warframestat.us/pc/events");
+            var events = WebHelper.DownloadJson<List<Event>>($"https://api.warframestat.us/{platform}/events");
             translator.TranslateEvents(events);
             foreach (var @event in events)
             {
@@ -161,12 +164,19 @@ namespace TRKS.WF.QQBot
             return events;
         }
 
+        public List<PersistentEnemie> GetPersistentEnemies()
+        {
+            var enemies = WebHelper.DownloadJson<List<PersistentEnemie>>("https://api.warframestat.us/pc/persistentEnemies");
+            translator.TranslatePersistentEnemies(enemies);
+            return enemies;
+        }
+
         private static DateTime GetRealTime(DateTime time)
         {
             return time + TimeZone.CurrentTimeZone.GetUtcOffset(DateTime.Now);
         }
-        
     }
+    
 
     public class WFTranslator
     {
@@ -292,11 +302,11 @@ namespace TRKS.WF.QQBot
             }
             else
             {
-                var formatedDict = translateApi.Dict.Select(dict => new Dict
-                    {En = dict.En.Format(), Id = dict.Id, Type = dict.Type, Zh = dict.Zh}).ToList();
-                var zhResults = formatedDict.Where(dict => dict.Zh.Format() == str).ToList();
-                var enResults = formatedDict.Where(dict => dict.En.Format() == str).ToList();
-                if (!(zhResults.Any() && enResults.Any()))
+                /*var formatedDict = translateApi.Dict.Select(dict => new Dict
+                    {En = dict.En.Format(), Id = dict.Id, Type = dict.Type, Zh = dict.Zh}).ToList();*/
+                var zhResults = translateApi.Dict.Where(dict => dict.Zh.Format() == str).ToList();
+                var enResults = translateApi.Dict.Where(dict => dict.En.Format() == str).ToList();
+                if (!zhResults.Any() && !enResults.Any())
                 {
                     sb.AppendLine("并没有查询到任何翻译,请检查源名.");
                 }
@@ -338,7 +348,19 @@ namespace TRKS.WF.QQBot
         {
             return translateApi.Relic.Where(relic => relic.Name.Format().Contains(word)).ToList();
         }
-
+        private static DateTime GetRealTime(DateTime time)
+        {
+            return time + TimeZone.CurrentTimeZone.GetUtcOffset(DateTime.Now);
+        }
+        public void TranslatePersistentEnemies(List<PersistentEnemie> enemies)
+        {
+            foreach (var enemy in enemies)
+            {
+                enemy.agentType = dictTranslators["Word"].Translate(enemy.agentType);
+                enemy.lastDiscoveredAt = TranslateNode(enemy.lastDiscoveredAt);
+                enemy.lastDiscoveredTime = GetRealTime(enemy.lastDiscoveredTime);
+            }
+        }
         public void TranslateEvents(List<Event> events)
         {
             foreach (var @event in events)
@@ -387,9 +409,15 @@ namespace TRKS.WF.QQBot
 
         private string TranslateNode(string node)
         {
-            var strings = node.Split('(');
-            var nodeRegion = strings[1].Split(')')[0];
-            return strings[0] + dictTranslators["Star"].Translate(nodeRegion);
+            var result = "";
+            if (!string.IsNullOrEmpty(node))
+            {
+                var strings = node.Split('(');
+                var nodeRegion = strings[1].Split(')')[0];
+                result = strings[0] + dictTranslators["Star"].Translate(nodeRegion);
+            }
+
+            return result;
         }
 
         public bool ContainsWeapon(string weapon)
@@ -482,6 +510,7 @@ namespace TRKS.WF.QQBot
 
         public void TranslateFissures(List<Fissure> fissures)
         {
+            fissures = fissures.OrderBy(fissure => fissure.tierNum).ToList();
             foreach (var fissure in fissures)
             {
                 fissure.node = TranslateNode(fissure.node);
